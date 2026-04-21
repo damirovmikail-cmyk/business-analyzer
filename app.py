@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd 
 st.title("Business perfomance report")
 revenues=[]
 profits=[]
@@ -49,3 +50,25 @@ if st.button("calculate report"):
 
         st.write("average profit:",round(average_profit,2))
         st.write("days above average:",above_count)
+
+        days_list=[]
+        for i in range(len(profits)):
+            days_list.append(f"Day {i+1}")
+
+
+        data=pd.DataFrame({
+            "Day":days_list,
+            "Revenue":revenues,
+            "Cost":costs,
+            "Profit":profits,
+            "Margin":margins
+        })
+
+        st.subheader("Business Data")
+        st.dataframe(data)
+
+        st.subheader("Revemue,Cost and Profit")
+        st.line_chart(data.set_index("Day")[["Revenue","Cost","Profit"]])
+
+        st.subheader("Profit Margin")
+        st.bar_chart(data.set_index("day")[["Margin"]])
