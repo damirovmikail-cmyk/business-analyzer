@@ -71,4 +71,4 @@ if st.button("calculate report"):
         st.line_chart(data.set_index("Day")[["Revenue","Cost","Profit"]])
 
         st.subheader("Profit Margin")
-        st.bar_chart(data.set_index("day")[["Margin"]])
+        st.bar_chart(data.set_index("Day")[["Margin"]])
